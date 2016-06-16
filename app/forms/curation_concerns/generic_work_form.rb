@@ -4,6 +4,5 @@ module CurationConcerns
   class GenericWorkForm < Sufia::Forms::WorkForm
     self.model_class = ::GenericWork
     self.terms += [:resource_type]
-
   end
 end

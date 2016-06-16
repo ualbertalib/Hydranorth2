@@ -17,18 +17,19 @@ Lint/ImplicitStringConcatenation:
     - 'lib/generators/sufia/**/*'
 
 Metrics/LineLength:
-  Max: 400
+  Enabled: false
 
 Metrics/AbcSize:
-  Max: 30
-  Exclude:
-    - 'app/controllers/concerns/sufia/admin/depositor_stats.rb'
-    - 'app/controllers/concerns/sufia/my_controller_behavior.rb'
-    - 'app/services/sufia/user_stat_importer.rb'
-    - 'lib/sufia/arkivo/metadata_munger.rb'
+  Enabled: false
 
 Metrics/MethodLength:
-  Max: 15
+  Enabled: false
+
+# catalog_controller.rb is usually long because it is mostly configuration
+# user.rb could use some refactoring, see #249
+Metrics/ClassLength:
+  Exclude:
+    - 'app/controllers/catalog_controller.rb'
 
 Style/BlockDelimiters:
   Exclude:
