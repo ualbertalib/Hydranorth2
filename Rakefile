@@ -7,3 +7,6 @@ Rails.application.load_tasks
 
 require 'solr_wrapper/rake_task'
 require 'fcrepo_wrapper/rake_task'
+require 'rubocop/rake_task'
+
+RuboCop::RakeTask.new

@@ -18,5 +18,5 @@ Hydra.configure do |config|
   #
   #
   # Specify the user model
-  # config.user_model = 'User'
+  config.user_model = 'User'
 end
