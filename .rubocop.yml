@@ -30,21 +30,9 @@ Metrics/AbcSize:
 Metrics/MethodLength:
   Max: 15
 
-Style/BlockDelimiters:
-  Exclude:
-    - 'spec/**/*'
-
-Style/BlockEndNewline:
-  Exclude:
-    - 'spec/**/*'
-
 Style/SymbolProc: # https://github.com/bbatsov/rubocop/issues/3071
   Exclude:
     - 'app/models/sufia/uploaded_file.rb'
-
-Style/MultilineBlockLayout:
-  Exclude:
-    - 'spec/**/*'
 
 Style/IndentationConsistency:
   EnforcedStyle: rails
@@ -57,17 +45,8 @@ Style/CollectionMethods:
     detect: 'find'
     find_all: 'select'
 
-Style/WordArray:
-  Enabled: false
-
-Style/RegexpLiteral:
-  Enabled: false
-
-Style/StringLiterals:
-  Enabled: false
-
 Style/ClassAndModuleChildren:
-  Enabled: false
+  EnforcedStyle: compact
 
 Style/Documentation:
   Enabled: false
