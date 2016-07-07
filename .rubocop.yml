@@ -1,0 +1,63 @@
+inherit_from: .rubocop_todo.yml
+
+AllCops:
+  DisplayCopNames: true
+  Include:
+    - '**/Rakefile'
+    - '**/config.ru'
+  Exclude:
+    - 'db/**/*'
+    - 'script/**/*'
+    - 'spec/internal/**/*'
+    - 'spec/test_app_templates/**/*'
+    - 'vendor/**/*'
+
+Lint/ImplicitStringConcatenation:
+  Exclude:
+    - 'lib/generators/sufia/**/*'
+
+Metrics/LineLength:
+  Max: 400
+
+Metrics/AbcSize:
+  Max: 30
+  Exclude:
+    - 'app/controllers/concerns/sufia/admin/depositor_stats.rb'
+    - 'app/controllers/concerns/sufia/my_controller_behavior.rb'
+    - 'app/services/sufia/user_stat_importer.rb'
+    - 'lib/sufia/arkivo/metadata_munger.rb'
+
+Metrics/MethodLength:
+  Max: 15
+
+Style/SymbolProc: # https://github.com/bbatsov/rubocop/issues/3071
+  Exclude:
+    - 'app/models/sufia/uploaded_file.rb'
+
+Style/IndentationConsistency:
+  EnforcedStyle: rails
+
+Style/CollectionMethods:
+  PreferredMethods:
+    collect: 'map'
+    collect!: 'map!'
+    inject: 'reduce'
+    detect: 'find'
+    find_all: 'select'
+
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
+
+Style/Documentation:
+  Enabled: false
+
+Style/GlobalVars:
+  AllowedVariables:
+    - $in_travis
+
+Style/SingleLineBlockParams:
+  Enabled: false
+
+Rails:
+  Enabled: true
+
