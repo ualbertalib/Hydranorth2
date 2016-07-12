@@ -51,7 +51,7 @@ Sufia.config do |config|
   # config.redis_namespace = "sufia"
 
   # Specify the path to the file characterization tool:
-  config.fits_path = "fits"
+  config.fits_path = 'fits'
 
   # Specify the path to the file derivatives creation tool:
   # config.libreoffice_path = "soffice"
