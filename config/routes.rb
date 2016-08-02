@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   Hydra::BatchEdit.add_routes(self)
+  mount Qa::Engine => '/authorities'
   mount Blacklight::Engine => '/'
 
   concern :searchable, Blacklight::Routes::Searchable.new
