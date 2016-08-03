@@ -3,6 +3,7 @@
 # port: 8983
 instance_dir: tmp/solr-development
 download_dir: tmp
+cloud: true
 collection:
   persist: true
   dir: solr/config/
