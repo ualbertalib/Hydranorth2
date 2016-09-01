@@ -3,4 +3,18 @@ class Collection < ActiveFedora::Base
   include ::CurationConcerns::CollectionBehavior
   # You can replace these metadata if they're not suitable
   include CurationConcerns::BasicMetadata
+
+  def add_member_objects(new_member_ids)
+    Array(new_member_ids).each do |member_id|
+      member = ActiveFedora::Base.find(member_id, cast: true)
+      member.member_of_collections << self
+      member.member_of_collection_ids << id
+      member.save!
+    end
+  end
+
+  def member_objects
+    ActiveFedora::Base.where("Solrizer.solf_name('member_of_collection_ids'):#{id}")
+  end
+
 end

@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'sufia', '~> 7.0.0'
+gem 'sufia', '~> 7.1.0'
+gem 'curation_concerns', github: 'projecthydra/curation_concerns', branch: 'member_of_replace'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 4.2.0'
@@ -35,7 +36,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+  gem 'byebug', '5.0'
+  gem "ruby-debug-passenger"
   gem 'solr_wrapper', '>= 0.3'
   gem 'fcrepo_wrapper'
   gem 'rspec-rails'
@@ -45,6 +47,8 @@ group :development, :test do
   else
     gem 'collection_north', git: 'https://github.com/ualbertalib/CollectionNorth.git'
   end
+  
+  gem 'better_errors'
 end
 
 group :development do
