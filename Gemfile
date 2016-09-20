@@ -2,6 +2,12 @@ source 'https://rubygems.org'
 
 gem 'sufia', '~> 7.1.0'
 
+if ENV['LOCAL_SUFIA_MIGRATE_PATH']
+  gem 'sufia_migrate', path: ENV['LOCAL_SUFIA_MIGRATE_PATH']
+else
+  gem 'sufia_migrate', github: 'ualbertalib/sufia_migrate', branch: 'hydranorth'
+end
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 4.2.0'
 # Use sqlite3 as the database for Active Record

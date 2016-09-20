@@ -1,0 +1,13 @@
+development:
+  user: fedoraAdmin
+  password: fedoraAdmin
+  preserve_ids: true
+  root_uri: http://192.168.33.17:8983/fedora/rest/dev
+test:
+  user: fedoraAdmin
+  password: fedoraAdmin
+  root_uri: http://127.0.0.1:<%= ENV['FCREPO_TEST_PORT'] || 8986 %>/rest/test
+production:
+  user: fedoraAdmin
+  password: fedoraAdmin
+  root_uri: http://127.0.0.1:8983/fedora/rest/prod
