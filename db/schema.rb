@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160802164640) do
+ActiveRecord::Schema.define(version: 20161006224001) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer  "user_id",       limit: 4,     null: false
@@ -270,6 +270,13 @@ ActiveRecord::Schema.define(version: 20160802164640) do
   end
 
   add_index "subject_local_authority_entries", ["lowerLabel"], name: "entries_by_lower_label", using: :btree
+
+  create_table "sufia_features", force: :cascade do |t|
+    t.string   "key",        limit: 255,                 null: false
+    t.boolean  "enabled",                default: false, null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+  end
 
   create_table "tinymce_assets", force: :cascade do |t|
     t.string   "file",       limit: 255
