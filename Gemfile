@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'sufia', '~> 7.0.0'
+gem 'sufia', '~> 7.2.0'
+gem 'flipflop', git: 'https://github.com/jcoyne/flipflop.git', branch: 'hydra'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 4.2.0'
