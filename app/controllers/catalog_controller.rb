@@ -60,8 +60,6 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name('based_near', :facetable), label: 'Location', limit: 5
     config.add_facet_field solr_name('publisher', :facetable), label: 'Publisher', limit: 5
     config.add_facet_field solr_name('file_format', :facetable), label: 'File Format', limit: 5
-    config.add_facet_field 'test_path_dpsim',   :label => 'Path', :partial => 'blacklight/hierarchy/facet_hierarchy'
-
 
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request
@@ -268,12 +266,6 @@ class CatalogController < ApplicationController
         pf: solr_name
       }
     end
-
-    config.facet_display = {
-      :hierarchy => {
-        'test_path'   => [['dpsim'], '/'],       # values are arrays: 1st element is array, 2nd is delimiter string
-      }
-    }
 
     # "sort results by" select (pulldown)
     # label in pulldown is followed by the name of the SOLR field to sort by and
