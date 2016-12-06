@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+# semantically-meaningful name for OS-specific gems
 def os_is(re)
   RbConfig::CONFIG['host_os'] =~ re
 end
@@ -65,6 +66,9 @@ group :development do
   gem 'pry', '~> 0.10.4'
   gem 'better_errors'
 
+  # fixes an issue I'm experiencing locally, and I'd rather have the solution documented here rather than go on a
+  # fishing expedition if I set up a new gemset or my machine spontaneously combusts. Related to
+  # https://github.com/rails/rails/issues/26658 TODO: re-evealuate on next Ruby update -- MB
   gem 'rb-readline', platforms: :ruby, install_if: os_is(/darwin/)
 end
 
