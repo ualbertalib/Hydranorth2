@@ -2,9 +2,12 @@ source 'https://rubygems.org'
 
 gem 'sufia', '~> 7.2.0'
 # Hidden Sufia Dependencies
+
+# Sufia pushes flipflop on the app as its not an actual gem
 gem 'flipflop', git: 'https://github.com/jcoyne/flipflop.git', branch: 'hydra'
 gem 'jbuilder', '~> 2.0' # Hidden Sufia Dependencies...Need PR against sufia...
-# gem 'rsolr', '~> 1.0'
+# gem 'rsolr', '~> 1.0' # Do we need this? Comment it out for now
+
 gem 'devise'
 # gem 'devise-guests', '~> 0.3'
 
@@ -33,6 +36,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rubocop', require: false
   gem 'solr_wrapper', '>= 0.3'
+
   if ENV['LOCAL_COLLECTION_NORTH_PATH']
     gem 'collection_north', path: ENV['LOCAL_COLLECTION_NORTH_PATH']
   else
