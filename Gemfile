@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'sufia', '~> 7.2.0'
 # Hidden Sufia Dependencies
- gem 'flipflop', git: 'https://github.com/jcoyne/flipflop.git', branch: 'hydra'
+gem 'flipflop', git: 'https://github.com/jcoyne/flipflop.git', branch: 'hydra'
 gem 'jbuilder', '~> 2.0' # Hidden Sufia Dependencies...Need PR against sufia...
 # gem 'rsolr', '~> 1.0'
 gem 'devise'
@@ -29,10 +29,10 @@ end
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-  gem 'solr_wrapper', '>= 0.3'
   gem 'fcrepo_wrapper'
   gem 'rspec-rails'
-  gem 'rubocop'
+  gem 'rubocop', require: false
+  gem 'solr_wrapper', '>= 0.3'
   if ENV['LOCAL_COLLECTION_NORTH_PATH']
     gem 'collection_north', path: ENV['LOCAL_COLLECTION_NORTH_PATH']
   else
@@ -41,12 +41,12 @@ group :development, :test do
 end
 
 group :development do
-  gem "better_errors"
-  gem "binding_of_caller"
+  gem 'better_errors'
+  gem 'binding_of_caller'
 
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  # Spring dependencies
   gem 'listen', '~> 3.0.5'
-  gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'spring-commands-rspec'
+  gem 'spring-watcher-listen', '~> 2.0.0'
 end
