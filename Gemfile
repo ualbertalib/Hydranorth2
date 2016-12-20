@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'sufia', '~> 7.2.0'
 # Hidden Sufia Dependencies
 
-# Sufia pushes flipflop on the app as its not an actual gem
+# Sufia pushes flipflop on the app as its not an actual gem, should PR this back somehow?
 gem 'flipflop', git: 'https://github.com/jcoyne/flipflop.git', branch: 'hydra'
 gem 'jbuilder', '~> 2.0' # Hidden Sufia Dependencies...Need PR against sufia...
 # gem 'rsolr', '~> 1.0' # Do we need this? Comment it out for now
@@ -26,6 +26,10 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 
 group :test do
+  gem 'capybara'
+  # gem 'capybara-screenshot'
+  # gem 'poltergeist'
+
   gem 'coffee-rails' # Hidden Sufia Dependencies...Need PR against sufia...
 end
 
@@ -35,6 +39,7 @@ group :development, :test do
   gem 'fcrepo_wrapper'
   gem 'rspec-rails'
   gem 'rubocop', require: false
+  gem 'rubocop-rspec', require: false
   gem 'solr_wrapper', '>= 0.3'
 
   if ENV['LOCAL_COLLECTION_NORTH_PATH']

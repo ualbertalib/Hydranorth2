@@ -22,3 +22,24 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+## Running the Tests
+
+Setup dependencies and run the test suite:
+
+   ```sh
+   $ bundle install
+   $ rake db:migrate
+   ```
+
+You may also want to run the Fedora and Solr servers in one window with:
+
+   ```sh
+   $ rake hydra:test_server
+   ```
+
+And run the test suite in another window:
+
+   ```sh
+   $ rake spec
+   ```

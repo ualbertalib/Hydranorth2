@@ -1,8 +1,8 @@
-
 # List of cops can be found here:
 # https://github.com/bbatsov/rubocop/blob/master/config/default.yml
 # https://github.com/bbatsov/rubocop/blob/master/config/disabled.yml
 # https://github.com/bbatsov/rubocop/blob/master/config/enabled.yml
+require: rubocop-rspec
 
 inherit_from: .rubocop_todo.yml
 
@@ -70,3 +70,9 @@ Style/RegexpLiteral:
 # Use %w or %W for arrays of words.
 Style/WordArray:
   Enabled: false
+
+RSpec/ExampleLength:
+  Max: 15
+
+RSpec/MultipleExpectations:
+  Max: 5
