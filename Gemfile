@@ -38,8 +38,11 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'fcrepo_wrapper'
   gem 'rspec-rails'
+
+  gem 'coveralls', require: false
   gem 'rubocop', require: false
   gem 'rubocop-rspec', require: false
+
   gem 'solr_wrapper', '>= 0.3'
 
   if ENV['LOCAL_COLLECTION_NORTH_PATH']
