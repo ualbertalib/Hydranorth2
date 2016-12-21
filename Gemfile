@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'sufia', '~> 7.2.0'
+gem 'sufia', '7.2.0'
 # Hidden Sufia Dependencies
 
 # Sufia pushes flipflop on the app as its not an actual gem, should PR this back somehow?
@@ -36,13 +36,13 @@ end
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-  gem 'fcrepo_wrapper'
   gem 'rspec-rails'
 
   gem 'coveralls', require: false
   gem 'rubocop', require: false
   gem 'rubocop-rspec', require: false
 
+  gem 'fcrepo_wrapper'
   gem 'solr_wrapper', '>= 0.3'
 
   if ENV['LOCAL_COLLECTION_NORTH_PATH']

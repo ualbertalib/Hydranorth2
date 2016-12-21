@@ -10,6 +10,7 @@ AllCops:
   DisplayCopNames: true
   DisplayStyleGuide: true
   Exclude:
+    - 'vendor/**/*'
     - 'db/**/*'
     - 'tmp/**/*'
   ExtraDetails: true
