@@ -22,7 +22,7 @@ AllCops:
 # A calculated magnitude based on number of assignments,
 # branches, and conditions.
 Metrics/AbcSize:
-  Max: 45 # default 15
+  Enabled: false
 
 Metrics/ClassLength:
   Max: 500 # default 100
@@ -30,7 +30,7 @@ Metrics/ClassLength:
 # A complexity metric that is strongly correlated to the number
 # of test cases needed to validate a method.
 Metrics/CyclomaticComplexity:
-  Max: 17 # default 6
+  Enabled: false
 
 Metrics/LineLength:
   Enabled: true
@@ -38,14 +38,14 @@ Metrics/LineLength:
 
 # Avoid methods longer than 10 lines of code.
 Metrics/MethodLength:
-  Max: 40 # default 10
+  Max: 20 # default 10
 
 Metrics/ModuleLength:
   Max: 500 # default 100
 
 # A complexity metric geared towards measuring complexity for a human reader.
 Metrics/PerceivedComplexity:
-  Max: 18 # default 7
+  Enabled: false
 
 Rails:
   Enabled: true
