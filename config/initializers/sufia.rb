@@ -56,7 +56,8 @@ Sufia.config do |config|
   # Specify the path to the file derivatives creation tool:
   # config.libreoffice_path = "soffice"
 
-  # Specify how many seconds back from the current time that we should show by default of the user's activity on the user's dashboard
+  # Specify how many seconds back from the current time that we should show by
+  # default of the user's activity on the user's dashboard
   # config.activity_to_show_default_seconds_since_now = 24*60*60
 
   # Sufia can integrate with Zotero's Arkivo service for automatic deposit

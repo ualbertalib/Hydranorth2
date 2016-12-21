@@ -1,49 +1,53 @@
+
+# List of cops can be found here:
+# https://github.com/bbatsov/rubocop/blob/master/config/default.yml
+# https://github.com/bbatsov/rubocop/blob/master/config/disabled.yml
+# https://github.com/bbatsov/rubocop/blob/master/config/enabled.yml
+
 inherit_from: .rubocop_todo.yml
 
 AllCops:
   DisplayCopNames: true
-  Include:
-    - '**/Rakefile'
-    - '**/config.ru'
+  DisplayStyleGuide: true
   Exclude:
     - 'db/**/*'
-    - 'script/**/*'
-    - 'spec/internal/**/*'
-    - 'spec/test_app_templates/**/*'
-    - 'vendor/**/*'
+    - 'tmp/**/*'
+  ExtraDetails: true
+  TargetRubyVersion: 2.2
 
-Lint/ImplicitStringConcatenation:
-  Exclude:
-    - 'lib/generators/sufia/**/*'
+# Alot of these metrics are quite restrictive. We may want to disable a few of these.
+# For now let's keep them and increase them by an excessive amount
+
+# A calculated magnitude based on number of assignments,
+# branches, and conditions.
+Metrics/AbcSize:
+  Max: 45 # default 15
+
+Metrics/ClassLength:
+  Max: 500 # default 100
+
+# A complexity metric that is strongly correlated to the number
+# of test cases needed to validate a method.
+Metrics/CyclomaticComplexity:
+  Max: 17 # default 6
 
 Metrics/LineLength:
-  Max: 400
+  Enabled: true
+  Max: 120 # default is 80
 
-Metrics/AbcSize:
-  Max: 30
-  Exclude:
-    - 'app/controllers/concerns/sufia/admin/depositor_stats.rb'
-    - 'app/controllers/concerns/sufia/my_controller_behavior.rb'
-    - 'app/services/sufia/user_stat_importer.rb'
-    - 'lib/sufia/arkivo/metadata_munger.rb'
-
+# Avoid methods longer than 10 lines of code.
 Metrics/MethodLength:
-  Max: 15
+  Max: 40 # default 10
 
-Style/SymbolProc: # https://github.com/bbatsov/rubocop/issues/3071
-  Exclude:
-    - 'app/models/sufia/uploaded_file.rb'
+Metrics/ModuleLength:
+  Max: 500 # default 100
 
-Style/IndentationConsistency:
-  EnforcedStyle: rails
+# A complexity metric geared towards measuring complexity for a human reader.
+Metrics/PerceivedComplexity:
+  Max: 18 # default 7
 
-Style/CollectionMethods:
-  PreferredMethods:
-    collect: 'map'
-    collect!: 'map!'
-    inject: 'reduce'
-    detect: 'find'
-    find_all: 'select'
+Rails:
+  Enabled: true
 
 Style/ClassAndModuleChildren:
   EnforcedStyle: compact
@@ -51,13 +55,18 @@ Style/ClassAndModuleChildren:
 Style/Documentation:
   Enabled: false
 
-Style/GlobalVars:
-  AllowedVariables:
-    - $in_travis
-
-Style/SingleLineBlockParams:
+# Checks if there is a magic comment to enforce string literals
+Style/FrozenStringLiteralComment:
   Enabled: false
 
-Rails:
+Style/IndentationConsistency:
   Enabled: true
+  EnforcedStyle: rails
 
+# Perfer to use // but %r can be better in certain scenarios
+Style/RegexpLiteral:
+  Enabled: false
+
+# Use %w or %W for arrays of words.
+Style/WordArray:
+  Enabled: false
