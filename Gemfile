@@ -1,12 +1,24 @@
 source 'https://rubygems.org'
 
-gem 'sufia', '7.2.0'
-# Hidden Sufia Dependencies
+# semantically-meaningful name for OS-specific gems
+def os_is(re)
+  RbConfig::CONFIG['host_os'] =~ re
+end
 
+gem 'sufia', '~> 7.2.0'
+
+# hidden Sufia dependencies below
 # Sufia pushes flipflop on the app as its not an actual gem, should PR this back somehow?
 gem 'flipflop', git: 'https://github.com/jcoyne/flipflop.git', branch: 'hydra'
 gem 'jbuilder', '~> 2.0' # Hidden Sufia Dependencies...Need PR against sufia...
 # gem 'rsolr', '~> 1.0' # Do we need this? Comment it out for now
+
+# fail on sufia 7.2...they have a lose dependency on CC...which is breaking if it jumps to a higher version
+gem 'curation_concerns', '1.6.1'
+
+gem 'solrizer', git: 'https://github.com/mbarnett/solrizer.git', branch: 'solrizable_path_types'
+
+gem 'blacklight-hierarchy'
 
 gem 'devise'
 # gem 'devise-guests', '~> 0.3'
@@ -36,14 +48,16 @@ end
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'pry', '~> 0.10.4'
+
+  gem 'fcrepo_wrapper'
+  gem 'solr_wrapper', '>= 0.3'
+
   gem 'rspec-rails'
 
   gem 'coveralls', require: false
   gem 'rubocop', require: false
   gem 'rubocop-rspec', require: false
-
-  gem 'fcrepo_wrapper'
-  gem 'solr_wrapper', '>= 0.3'
 
   if ENV['LOCAL_COLLECTION_NORTH_PATH']
     gem 'collection_north', path: ENV['LOCAL_COLLECTION_NORTH_PATH']
@@ -61,4 +75,9 @@ group :development do
   gem 'listen', '~> 3.0.5'
   gem 'spring-commands-rspec'
   gem 'spring-watcher-listen', '~> 2.0.0'
+
+  # fixes an issue I'm experiencing locally, and I'd rather have the solution documented here rather than go on a
+  # fishing expedition if I set up a new gemset or my machine spontaneously combusts. Related to
+  # https://github.com/rails/rails/issues/26658 TODO: re-evealuate on next Ruby update -- MB
+  gem 'rb-readline', platforms: :ruby, install_if: os_is(/darwin/)
 end
