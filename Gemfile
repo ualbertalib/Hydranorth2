@@ -41,6 +41,7 @@ group :test do
   gem 'capybara'
   # gem 'capybara-screenshot'
   # gem 'poltergeist'
+  gem 'database_cleaner'
 
   gem 'coffee-rails' # Hidden Sufia Dependencies...Need PR against sufia...
 end
@@ -53,6 +54,7 @@ group :development, :test do
   gem 'fcrepo_wrapper'
   gem 'solr_wrapper', '>= 0.3'
 
+  gem 'factory_girl_rails'
   gem 'rspec-rails'
 
   gem 'coveralls', require: false

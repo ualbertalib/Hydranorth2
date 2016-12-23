@@ -5,10 +5,7 @@ include Warden::Test::Helpers
 
 RSpec.feature 'Create a GenericWork' do
   context 'a logged in user' do
-    let(:user) do
-      # TODO: Use FactoryGirl or fixture instead
-      User.create(email: 'test@example.com', password: 'password123')
-    end
+    let(:user) { create(:user) }
 
     scenario do
       login_as user
@@ -18,9 +15,6 @@ RSpec.feature 'Create a GenericWork' do
 
       expect(page).to have_css 'h1', text: 'Test GenericWork'
       expect(page).to have_css 'div.alert-success', text: 'Your files are being processed by Sufia in the background.'
-
-      # TODO: Remove after using FactoryGirl or fixture
-      user.destroy
     end
   end
 end
