@@ -1,24 +1,40 @@
-# README
+# HydraNorth2
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[![Build Status](https://travis-ci.org/ualbertalib/Hydranorth2.svg?branch=master)](https://travis-ci.org/ualbertalib/Hydranorth2)
+[![Coverage Status](https://coveralls.io/repos/github/ualbertalib/Hydranorth2/badge.svg?branch=master)](https://coveralls.io/github/ualbertalib/Hydranorth2?branch=master)
 
-Things you may want to cover:
+## TODO! Add information to me!
 
-* Ruby version
 
-* System dependencies
+## Running the Tests
 
-* Configuration
+Setup dependencies and run the test suite:
 
-* Database creation
+   ```sh
+   $ bundle install
+   $ rake db:migrate
+   ```
 
-* Database initialization
+You can run the Fedora and Solr servers in one window with:
 
-* How to run the test suite
+   ```sh
+   $ rake hydra:test_server
+   ```
 
-* Services (job queues, cache servers, search engines, etc.)
+And run the test suite in another window:
 
-* Deployment instructions
+   ```sh
+   $ rake spec
+   ```
 
-* ...
+You can then run rubocop with:
+
+  ```sh
+  $ rubocop
+  ```
+
+  Or may also use the following rake task to do everything at once (rubocop/setup test servers/run rspec):
+
+  ```sh
+  $ rake hydranorth:ci
+  ```

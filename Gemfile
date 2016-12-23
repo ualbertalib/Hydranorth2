@@ -6,15 +6,15 @@ def os_is(re)
 end
 
 gem 'sufia', '~> 7.2.0'
-# Hidden Sufia Dependencies
 
-# Sufia pushes flipflop on the app as its not an actual gem
+# hidden Sufia dependencies below
+# Sufia pushes flipflop on the app as its not an actual gem, should PR this back somehow?
 gem 'flipflop', git: 'https://github.com/jcoyne/flipflop.git', branch: 'hydra'
 gem 'jbuilder', '~> 2.0' # Hidden Sufia Dependencies...Need PR against sufia...
 # gem 'rsolr', '~> 1.0' # Do we need this? Comment it out for now
 
-# fail update on hydra...was removes in curation concerns...but sufia still needs this
-gem 'blacklight_advanced_search', '~> 6.0'
+# fail on sufia 7.2...they have a lose dependency on CC...which is breaking if it jumps to a higher version
+gem 'curation_concerns', '1.6.1'
 
 gem 'solrizer', git: 'https://github.com/mbarnett/solrizer.git', branch: 'solrizable_path_types'
 
@@ -38,6 +38,11 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 
 group :test do
+  gem 'capybara'
+  # gem 'capybara-screenshot'
+  # gem 'poltergeist'
+  gem 'database_cleaner'
+
   gem 'coffee-rails' # Hidden Sufia Dependencies...Need PR against sufia...
 end
 
@@ -49,8 +54,12 @@ group :development, :test do
   gem 'fcrepo_wrapper'
   gem 'solr_wrapper', '>= 0.3'
 
+  gem 'factory_girl_rails'
   gem 'rspec-rails'
+
+  gem 'coveralls', require: false
   gem 'rubocop', require: false
+  gem 'rubocop-rspec', require: false
 
   if ENV['LOCAL_COLLECTION_NORTH_PATH']
     gem 'collection_north', path: ENV['LOCAL_COLLECTION_NORTH_PATH']

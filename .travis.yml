@@ -1,0 +1,29 @@
+language: ruby
+rvm:
+  - 2.3.3
+jdk:
+  - oraclejdk8
+
+sudo: false
+
+cache: bundler
+
+bundler_args: --without development
+
+env:
+  global:
+    - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+  matrix:
+    - 'RAILS_VERSION=5.0.0.1'
+
+notifications:
+  email: false
+
+services:
+  - redis-server
+
+before_script:
+  - bin/setup
+
+script:
+  - bundle exec rake hydranorth:ci
