@@ -24,6 +24,9 @@ AllCops:
 Metrics/AbcSize:
   Enabled: false
 
+Metrics/BlockLength:
+  Max: 100 # default 25
+
 Metrics/ClassLength:
   Max: 500 # default 100
 

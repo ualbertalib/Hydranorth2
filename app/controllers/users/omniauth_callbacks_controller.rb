@@ -7,7 +7,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       sign_in_and_redirect @user, event: :authentication # this will throw if @user is not activated
       set_flash_message(:notice, :success, kind: 'Shibboleth') if is_navigational_format?
     else
-      set_flash_message(:error, :failure, kind: 'Shibboleth', reason: @user.errors.inspect)
+      # TODO: Customize UI flash messages for shibboleth
+      set_flash_message(:error, :failure, kind: 'Shibboleth', reason: 'TODO')
       redirect_to new_user_session_path
     end
   end
