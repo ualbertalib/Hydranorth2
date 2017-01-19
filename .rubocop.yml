@@ -76,7 +76,7 @@ Style/WordArray:
   Enabled: false
 
 RSpec/ExampleLength:
-  Max: 15
+  Max: 30
 
 RSpec/MultipleExpectations:
-  Max: 5
+  Max: 15

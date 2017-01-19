@@ -15,6 +15,9 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   # TODO: Can probably remove a few of these if we are only using omniauth?
+  # Don't need recoverable/rememberable (can drop columns as well,
+  # reset_password_toket/reset_password_sent_at/remember_created_at
+  # devise guest? drop column
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:shibboleth]
@@ -27,15 +30,12 @@ class User < ApplicationRecord
   end
 
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+    where(provider: auth.provider, uid: auth.uid).first_or_create! do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
       user.affiliation = auth.info.affiliation
       user.display_name = auth.info.display_name
       user.telephone = auth.info.telephone
-      # If you are using confirmable and the provider(s) you use validate emails,
-      # uncomment the line below to skip the confirmation emails.
-      # user.skip_confirmation!
     end
   end
 end

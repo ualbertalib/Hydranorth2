@@ -258,7 +258,7 @@ Devise.setup do |config|
                     affiliation: 'affiliation',
                     display_name: 'cn',
                     telephone: 'telephoneNumber'
-                    # TODO: add more details like: address, department, title, etc.
+                    # TODO: grab more details to populate our DB fields like: address, department, title, etc.
                   }
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
