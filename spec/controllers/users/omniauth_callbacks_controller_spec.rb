@@ -30,10 +30,9 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
       it 'raises and does not save user' do
         request.env['omniauth.auth'] = OmniAuth::AuthHash.new(
           provider: 'shibboleth',
-          uid: nil,
+          uid: 'john.doe@example.com',
           info: {
-            email: nil,
-            display_name: nil
+            email: nil
           }
         )
 
