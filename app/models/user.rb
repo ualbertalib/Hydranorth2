@@ -22,6 +22,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:shibboleth]
 
+  validates :uid, :provider, presence: true
+  validates :uid, uniqueness: { scope: :provider }
+
   # Method added by Blacklight; Blacklight uses #to_s on your
   # user class to get a user-displayable login/identifier for
   # the account.

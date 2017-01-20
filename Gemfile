@@ -45,6 +45,7 @@ group :test do
   # gem 'capybara-screenshot'
   # gem 'poltergeist'
   gem 'database_cleaner'
+  gem 'shoulda-matchers'
 
   gem 'coffee-rails' # Hidden Sufia Dependencies...Need PR against sufia...
 end
