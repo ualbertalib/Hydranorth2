@@ -5,9 +5,9 @@ RSpec.feature 'User logs in and logs out' do
     visit root_path
 
     click_link 'Login'
-    expect(page).to have_css('h2', text: 'Login to ERA')
+    expect(page).to have_css('h1', text: I18n.t('devise.sessions.new.header'))
     expect(current_path).to eq(new_user_session_path)
-    expect(page).to have_content 'Sign in with CCID'
+    expect(page).to have_content I18n.t('devise.sessions.new.login_button_text')
 
     OmniAuth.config.mock_auth[:shibboleth] = OmniAuth::AuthHash.new(
       provider: 'shibboleth',
@@ -18,7 +18,7 @@ RSpec.feature 'User logs in and logs out' do
       }
     )
 
-    click_link 'Sign in with CCID'
+    click_link I18n.t('devise.sessions.new.login_button_text')
 
     expect(page).to have_css('h1', text: 'My Dashboard')
     expect(current_path).to eq Sufia::Engine.routes.url_helpers.dashboard_index_path
@@ -36,15 +36,15 @@ RSpec.feature 'User logs in and logs out' do
     visit root_path
 
     click_link 'Login'
-    expect(page).to have_css('h2', text: 'Login to ERA')
+    expect(page).to have_css('h1', text: I18n.t('devise.sessions.new.header'))
     expect(current_path).to eq(new_user_session_path)
-    expect(page).to have_content 'Sign in with CCID'
+    expect(page).to have_content I18n.t('devise.sessions.new.login_button_text')
 
     OmniAuth.config.mock_auth[:shibboleth] = :invalid_credentials
 
-    click_link 'Sign in with CCID'
+    click_link I18n.t('devise.sessions.new.login_button_text')
 
-    expect(page).to have_css('h2', text: 'Login to ERA')
+    expect(page).to have_css('h1', text: I18n.t('devise.sessions.new.header'))
     expect(current_path).to eq(new_user_session_path)
     expect(page).to have_content I18n.t('devise.omniauth_callbacks.failure',
                                         kind: 'Shibboleth',
@@ -66,7 +66,7 @@ RSpec.feature 'User logs in and logs out' do
       }
     )
 
-    click_link 'Sign in with CCID'
+    click_link I18n.t('devise.sessions.new.login_button_text')
 
     expect(page).to have_css('h1', text: 'User Notifications')
     expect(current_path).to eq Sufia::Engine.routes.url_helpers.notifications_path

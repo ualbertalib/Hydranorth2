@@ -1,6 +1,5 @@
-<h2>Login to ERA</h2>
-<p class="login-instruct">ERA is now a <a href="https://ist.ualberta.ca/services/ccid-passwords/campus-computing-id">CCID</a> (Campus Computing ID) enabled service. If you have a CCID please use it to log in to ERA.</p>
+<% provide :page_title, construct_page_title(t('.title')) %>
 
-<div class="col-sm-8 col-sm-offset-2">
-  <%= link_to "Sign in with CCID", user_shibboleth_omniauth_authorize_path, :class => "btn btn-ccid" %>
-</div>
+<h1><%= t '.header' %></h1>
+<p><%= t '.description_html' %></p>
+<%= link_to t('.login_button_text'), user_shibboleth_omniauth_authorize_path, :class => "btn btn-primary" %>

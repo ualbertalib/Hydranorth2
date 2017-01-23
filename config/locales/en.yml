@@ -20,4 +20,11 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  hello: 'Hello world'
+  devise:
+    sessions:
+      new:
+        title: 'Login'
+        header: 'Login to ERA'
+        description_html: 'ERA is now a <a href="https://ist.ualberta.ca/services/ccid-passwords/campus-computing-id">CCID</a> (Campus Computing ID) enabled service. If you have a CCID please use it to log in to ERA.'
+        login_button_text: 'Sign in with University of Alberta CCID (Campus Computing ID)'
