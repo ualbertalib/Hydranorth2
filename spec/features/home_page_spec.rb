@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.feature 'Home page' do
   scenario 'visit' do
-    visit '/'
+    visit root_path
     expect(page).to have_title 'Sufia'
   end
 end

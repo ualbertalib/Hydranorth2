@@ -23,6 +23,7 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
         expect(user.email).to eq 'john.doe@example.com'
         expect(user.provider).to eq 'shibboleth'
         expect(user.uid).to eq 'john.doe@example.com'
+        expect(response).to redirect_to(::Sufia::Engine.routes.url_helpers.dashboard_index_path)
       end
     end
 
