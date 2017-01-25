@@ -2,4 +2,24 @@
 
 <h1><%= t '.header' %></h1>
 <p><%= t '.description_html' %></p>
-<%= link_to t('.login_button_text'), user_shibboleth_omniauth_authorize_path, :class => "btn btn-primary" %>
+<%= link_to t('.login_button_text'), user_shibboleth_omniauth_authorize_path, class: 'btn btn-primary' %>
+
+<%- if Rails.env.development? %>
+  <%# Temporary login form for local development until IST shibboleth issues gets resolved %>
+  <%= link_to 'Use Sign in Form? (Development Only)', '#collapseLoginForm', class: 'btn btn-primary', 'data-toggle': 'collapse' %>
+  <div class='collapse' id='collapseLoginForm'>
+    <%= form_for(:user, :url => session_path(:user)) do |f| %>
+      <div class='form-group'>
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'Email' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password %>
+        <%= f.password_field :password, autocomplete: 'off', class: 'form-control', placeholder: 'Password' %>
+      </div>
+
+      <%= f.submit 'Log in', class: 'btn btn-default' %>
+    <% end %>
+  </div>
+<% end %>
