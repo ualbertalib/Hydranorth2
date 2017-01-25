@@ -20,4 +20,15 @@ class Ability
     #   can [:create], ActiveFedora::Base
     # end
   end
+
+  # Override .admin? function as we are not using user_groups
+  def admin?
+    current_user.has_role? :admin
+  end
+
+  # Override registered_user? function as we are not using user_groups
+  # Here I am assuming any user is a valid registered_user
+  def registered_user?
+    return true if current_user.present?
+  end
 end

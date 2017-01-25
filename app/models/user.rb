@@ -12,6 +12,9 @@ class User < ApplicationRecord
   end
   # Connects this user object to Blacklights Bookmarks.
   include Blacklight::User
+
+  rolify
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   # TODO: Can probably remove a few of these if we are only using omniauth?
@@ -21,6 +24,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:shibboleth]
+
+  has_many :user_roles, dependent: :destroy
 
   validates :uid, :provider, presence: true
   validates :uid, uniqueness: { scope: :provider }
