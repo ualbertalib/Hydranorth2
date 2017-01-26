@@ -46,4 +46,9 @@ class User < ApplicationRecord
       user.telephone = auth.info.telephone
     end
   end
+
+  # Override user_groups to add 'admin' based on rolify admin role
+  def groups
+    has_role?(:admin) ? ['admin'] : []
+  end
 end
