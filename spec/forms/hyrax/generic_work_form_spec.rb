@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe GenericWork do
+RSpec.describe Hyrax::GenericWorkForm do
   it 'has tests' do
     skip 'Add your tests here'
   end

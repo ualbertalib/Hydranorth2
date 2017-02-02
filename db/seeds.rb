@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+# Silly hyrax stuff.... :(
+Hyrax::PermissionTemplate.create!(admin_set_id: Hyrax::DefaultAdminSetActor::DEFAULT_ID, workflow_name: 'default')
