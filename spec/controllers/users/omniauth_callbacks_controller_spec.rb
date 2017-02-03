@@ -10,19 +10,20 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
       it 'creates new user' do
         request.env['omniauth.auth'] = OmniAuth::AuthHash.new(
           provider: 'shibboleth',
-          uid: 'john.doe@example.com',
+          uid: 'johndoe',
           info: {
-            email: 'john.doe@example.com',
-            display_name: 'John Doe'
+            email: 'johndoe@ualberta.ca',
+            name: 'John',
+            last_name: 'Doe'
           }
         )
 
         expect { get :shibboleth }.to change { User.count }.by(1)
         user = User.last
         expect(user.display_name).to eq 'John Doe'
-        expect(user.email).to eq 'john.doe@example.com'
+        expect(user.email).to eq 'johndoe@ualberta.ca'
         expect(user.provider).to eq 'shibboleth'
-        expect(user.uid).to eq 'john.doe@example.com'
+        expect(user.uid).to eq 'johndoe'
         expect(response).to redirect_to(::Sufia::Engine.routes.url_helpers.dashboard_index_path)
       end
     end
@@ -31,7 +32,7 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
       it 'raises and does not save user' do
         request.env['omniauth.auth'] = OmniAuth::AuthHash.new(
           provider: 'shibboleth',
-          uid: 'john.doe@example.com',
+          uid: 'johndoe',
           info: {
             email: nil
           }

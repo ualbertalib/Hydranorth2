@@ -252,12 +252,13 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   config.omniauth :shibboleth,
                   # TODO: mappings will need to change when authenticating against IST's SAML
-                  uid_field: 'eppn',
+                  uid_field: lambda { |request_param|
+                    request_param.call('uid') || request_param.call('eppn').gsub(/@.*/, '')
+                  },
                   info_fields: {
-                    email:    'eppn',
-                    affiliation: 'affiliation',
-                    display_name: 'cn',
-                    telephone: 'telephoneNumber'
+                    email: ->(request_param) { request_param.call('mail') || request_param.call('eppn') },
+                    name: 'givenName',
+                    last_name: 'sn',
                     # TODO: grab more details to populate our DB fields like: address, department, title, etc.
                   }
   # ==> Warden configuration
