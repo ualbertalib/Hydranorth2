@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  Hydra::BatchEdit.add_routes(self)
-  mount Qa::Engine => '/authorities'
+  # mount Qa::Engine => '/authorities'
   mount Blacklight::Engine => '/'
 
   concern :searchable, Blacklight::Routes::Searchable.new
@@ -9,13 +8,6 @@ Rails.application.routes.draw do
     concerns :searchable
   end
 
-  devise_for :users
-  mount CurationConcerns::Engine, at: '/'
-  resources :welcome, only: 'index'
-  root 'sufia/homepage#index'
-  curation_concerns_collections
-  curation_concerns_basic_routes
-  curation_concerns_embargo_management
   concern :exportable, Blacklight::Routes::Exportable.new
 
   resources :solr_documents, only: [:show], path: '/catalog', controller: 'catalog' do
@@ -30,7 +22,14 @@ Rails.application.routes.draw do
     end
   end
 
+  curation_concerns_basic_routes
+  curation_concerns_embargo_management
+
+  devise_for :users
+  resources :welcome, only: 'index'
+  root 'hyrax/homepage#index'
+
   # This must be the very last route in the file because it has a catch-all route for 404 errors.
   # This behavior seems to show up only in production mode.
-  mount Sufia::Engine => '/'
+  mount Hyrax::Engine => '/'
 end

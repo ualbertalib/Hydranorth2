@@ -1,4 +1,4 @@
-Sufia.config do |config|
+Hyrax.config do |config|
   config.register_curation_concern :generic_work
 
   # Email recipient of messages sent via the contact form
@@ -37,7 +37,7 @@ Sufia.config do |config|
   # If you have ffmpeg installed and want to transcode audio and video uncomment this line
   # config.enable_ffmpeg = true
 
-  # Sufia uses NOIDs for files and collections instead of Fedora UUIDs
+  # Hyrax uses NOIDs for files and collections instead of Fedora UUIDs
   # where NOID = 10-character string and UUID = 32-character string w/ hyphens
   # config.enable_noids = true
 
@@ -48,10 +48,10 @@ Sufia.config do |config|
   # config.minter_statefile = '/tmp/minter-state'
 
   # Specify the prefix for Redis keys:
-  # config.redis_namespace = "sufia"
+  # config.redis_namespace = "hyrax"
 
   # Specify the path to the file characterization tool:
-  config.fits_path = 'fits'
+  config.fits_path = 'fits.sh'
 
   # Specify the path to the file derivatives creation tool:
   # config.libreoffice_path = "soffice"
@@ -60,7 +60,7 @@ Sufia.config do |config|
   # default of the user's activity on the user's dashboard
   # config.activity_to_show_default_seconds_since_now = 24*60*60
 
-  # Sufia can integrate with Zotero's Arkivo service for automatic deposit
+  # Hyrax can integrate with Zotero's Arkivo service for automatic deposit
   # of Zotero-managed research items.
   # config.arkivo_api = false
 
