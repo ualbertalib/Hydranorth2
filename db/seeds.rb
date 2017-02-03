@@ -8,4 +8,7 @@
 
 
 # Silly hyrax stuff.... :(
-Hyrax::PermissionTemplate.create!(admin_set_id: Hyrax::DefaultAdminSetActor::DEFAULT_ID, workflow_name: 'default')
+if !Rails.env.production? && !Hyrax::PermissionTemplate.exists?(admin_set_id: Hyrax::DefaultAdminSetActor::DEFAULT_ID)
+  puts 'Seeding Permission Template for Hyrax!'
+  Hyrax::PermissionTemplate.create!(admin_set_id: Hyrax::DefaultAdminSetActor::DEFAULT_ID, workflow_name: 'default')
+end
