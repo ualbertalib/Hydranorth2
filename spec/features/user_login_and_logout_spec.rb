@@ -11,10 +11,11 @@ RSpec.feature 'User logs in and logs out' do
 
     OmniAuth.config.mock_auth[:shibboleth] = OmniAuth::AuthHash.new(
       provider: 'shibboleth',
-      uid: 'john.doe@example.com',
+      uid: 'johndoe',
       info: {
-        email: 'john.doe@example.com',
-        display_name: 'John Doe'
+        email: 'johndoe@ualberta.ca',
+        name: 'John',
+        last_name: 'Doe'
       }
     )
 
@@ -59,10 +60,11 @@ RSpec.feature 'User logs in and logs out' do
 
     OmniAuth.config.mock_auth[:shibboleth] = OmniAuth::AuthHash.new(
       provider: 'shibboleth',
-      uid: 'john.doe@example.com',
+      uid: 'johndoe',
       info: {
-        email: 'john.doe@example.com',
-        display_name: 'John Doe'
+        email: 'johndoe@ualberta.ca',
+        name: 'John',
+        last_name: 'Doe'
       }
     )
 
