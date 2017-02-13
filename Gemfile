@@ -5,7 +5,8 @@ def os_is(re)
   RbConfig::CONFIG['host_os'] =~ re
 end
 
-gem 'sufia', '~> 7.2.0'
+# Need to point sufia to a github branch for hotfixes as a gem was never cut after 7.2
+gem 'sufia', git: 'https://github.com/projecthydra/sufia.git', branch: '7.2-migration'
 
 # hidden Sufia dependencies below
 # Sufia pushes flipflop on the app as its not an actual gem, should PR this back somehow?
@@ -14,7 +15,7 @@ gem 'jbuilder', '~> 2.0' # Hidden Sufia Dependencies...Need PR against sufia...
 # gem 'rsolr', '~> 1.0' # Do we need this? Comment it out for now
 
 # fail on sufia 7.2...they have a lose dependency on CC...which is breaking if it jumps to a higher version
-gem 'curation_concerns', '1.6.1'
+gem 'curation_concerns', '1.6.3'
 
 gem 'solrizer', git: 'https://github.com/mbarnett/solrizer.git', branch: 'solrizable_path_types'
 
