@@ -16,9 +16,9 @@ namespace :hydranorth do
 
   desc 'Run rubocop and specs for CI'
   task ci: :environment do
-    Rake::Task['hydranorth:rubocop'].invoke
     with_test_server do
       Rake::Task['hydranorth:rspec'].invoke
     end
+    Rake::Task['hydranorth:rubocop'].invoke
   end
 end
