@@ -22,6 +22,7 @@ gem 'solrizer', git: 'https://github.com/mbarnett/solrizer.git', branch: 'solriz
 gem 'blacklight-hierarchy'
 
 gem 'devise'
+gem 'omniauth'
 # gem 'devise-guests', '~> 0.3'
 gem 'omniauth-shibboleth'
 

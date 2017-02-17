@@ -694,6 +694,7 @@ DEPENDENCIES
   jquery-rails
   listen (~> 3.0.5)
   mysql2
+  omniauth
   omniauth-shibboleth
   pry (~> 0.10.4)
   puma (~> 3.0)

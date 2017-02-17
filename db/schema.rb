@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170113225432) do
+ActiveRecord::Schema.define(version: 20170215182021) do
 
   create_table "bookmarks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id",                     null: false
@@ -107,6 +107,16 @@ ActiveRecord::Schema.define(version: 20170113225432) do
     t.integer  "user_id"
     t.index ["file_id"], name: "index_file_view_stats_on_file_id", using: :btree
     t.index ["user_id"], name: "index_file_view_stats_on_user_id", using: :btree
+  end
+
+  create_table "identities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id",    null: false
+    t.string   "uid",        null: false
+    t.string   "provider",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["uid", "provider"], name: "index_identities_on_uid_and_provider", unique: true, using: :btree
+    t.index ["user_id"], name: "index_identities_on_user_id", using: :btree
   end
 
   create_table "local_authorities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -317,11 +327,8 @@ ActiveRecord::Schema.define(version: 20170113225432) do
     t.string   "arkivo_subscription"
     t.binary   "zotero_token",           limit: 65535
     t.string   "zotero_userid"
-    t.string   "provider",                                             null: false
-    t.string   "uid",                                                  null: false
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-    t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree
   end
 
   create_table "version_committers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
