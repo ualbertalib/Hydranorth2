@@ -14,8 +14,14 @@ class User < ApplicationRecord
   include Blacklight::User
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  # TODO: Can probably remove a few of these if we are only using omniauth?
+  # Don't need recoverable/rememberable (can drop columns as well,
+  # reset_password_toket/reset_password_sent_at/remember_created_at
+  # devise guest? drop column
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  has_many :identities, dependent: :destroy
 
   # Method added by Blacklight; Blacklight uses #to_s on your
   # user class to get a user-displayable login/identifier for

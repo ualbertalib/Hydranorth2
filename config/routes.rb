@@ -9,7 +9,11 @@ Rails.application.routes.draw do
     concerns :searchable
   end
 
-  devise_for :users
+  devise_for :users, skip: [:registrations, :passwords, :omniauth_callbacks]
+
+  match '/auth/:provider/callback', to: 'users/omniauth_callbacks#complete', via: [:get, :post]
+  match '/auth/failure', to: 'users/omniauth_callbacks#failure', via: [:get, :post]
+
   mount CurationConcerns::Engine, at: '/'
   resources :welcome, only: 'index'
   root 'sufia/homepage#index'
