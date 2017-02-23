@@ -25,6 +25,7 @@ gem 'devise'
 gem 'omniauth'
 # gem 'devise-guests', '~> 0.3'
 gem 'omniauth-shibboleth'
+gem 'rolify'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'

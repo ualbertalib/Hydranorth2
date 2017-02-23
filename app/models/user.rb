@@ -12,6 +12,9 @@ class User < ApplicationRecord
   end
   # Connects this user object to Blacklights Bookmarks.
   include Blacklight::User
+
+  rolify
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   # TODO: Can probably remove a few of these if we are only using omniauth?
@@ -21,6 +24,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :user_roles, dependent: :destroy
   has_many :identities, dependent: :destroy
 
   # Method added by Blacklight; Blacklight uses #to_s on your
@@ -28,5 +32,10 @@ class User < ApplicationRecord
   # the account.
   def to_s
     email
+  end
+
+  # Override user_groups to add 'admin' based on rolify admin role
+  def groups
+    has_role?(:admin) ? ['admin'] : []
   end
 end

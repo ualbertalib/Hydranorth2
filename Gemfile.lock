@@ -550,6 +550,7 @@ GEM
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
     retriable (2.1.0)
+    rolify (5.1.0)
     rsolr (1.1.2)
       builder (>= 2.1.2)
     rspec-core (3.5.4)
@@ -700,6 +701,7 @@ DEPENDENCIES
   puma (~> 3.0)
   rails (~> 5.0.0, >= 5.0.0.1)
   rb-readline
+  rolify
   rspec-rails
   rubocop
   rubocop-rspec
