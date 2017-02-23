@@ -22,27 +22,16 @@ class User < ApplicationRecord
   # reset_password_toket/reset_password_sent_at/remember_created_at
   # devise guest? drop column
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable, omniauth_providers: [:shibboleth]
+         :recoverable, :rememberable, :trackable, :validatable
 
   has_many :user_roles, dependent: :destroy
-
-  validates :uid, :provider, presence: true
-  validates :uid, uniqueness: { scope: :provider }
+  has_many :identities, dependent: :destroy
 
   # Method added by Blacklight; Blacklight uses #to_s on your
   # user class to get a user-displayable login/identifier for
   # the account.
   def to_s
     email
-  end
-
-  def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create! do |user|
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0, 20]
-      user.display_name = "#{auth.info.name} #{auth.info.last_name}"
-    end
   end
 
   # Override user_groups to add 'admin' based on rolify admin role

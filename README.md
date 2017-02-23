@@ -69,7 +69,7 @@ This is not ideal and hopefully a temporary solution. But currently in developme
     PassengerEnabled off
 	</Location>
 
-	<Location /users/auth/shibboleth/callback>
+	<Location /auth/CCID/callback>
 		AuthType shibboleth
 		ShibRequestSetting requireSession 1
 		ShibUseHeaders On

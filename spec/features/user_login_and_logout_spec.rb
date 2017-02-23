@@ -9,8 +9,8 @@ RSpec.feature 'User logs in and logs out' do
     expect(current_path).to eq(new_user_session_path)
     expect(page).to have_content I18n.t('devise.sessions.new.login_button_text')
 
-    OmniAuth.config.mock_auth[:shibboleth] = OmniAuth::AuthHash.new(
-      provider: 'shibboleth',
+    OmniAuth.config.mock_auth[:CCID] = OmniAuth::AuthHash.new(
+      provider: 'CCID',
       uid: 'johndoe',
       info: {
         email: 'johndoe@ualberta.ca',
@@ -41,15 +41,13 @@ RSpec.feature 'User logs in and logs out' do
     expect(current_path).to eq(new_user_session_path)
     expect(page).to have_content I18n.t('devise.sessions.new.login_button_text')
 
-    OmniAuth.config.mock_auth[:shibboleth] = :invalid_credentials
+    OmniAuth.config.mock_auth[:CCID] = :invalid_credentials
 
     click_link I18n.t('devise.sessions.new.login_button_text')
 
     expect(page).to have_css('h1', text: I18n.t('devise.sessions.new.header'))
     expect(current_path).to eq(new_user_session_path)
-    expect(page).to have_content I18n.t('devise.omniauth_callbacks.failure',
-                                        kind: 'Shibboleth',
-                                        reason: 'Invalid credentials')
+    expect(page).to have_content I18n.t('login.omniauth_error')
   end
 
   scenario 'when accessing a protected page it redirects back to same page after login' do
@@ -58,8 +56,8 @@ RSpec.feature 'User logs in and logs out' do
     expect(page).to have_content I18n.t('devise.failure.unauthenticated')
     expect(current_path).to eq(new_user_session_path)
 
-    OmniAuth.config.mock_auth[:shibboleth] = OmniAuth::AuthHash.new(
-      provider: 'shibboleth',
+    OmniAuth.config.mock_auth[:CCID] = OmniAuth::AuthHash.new(
+      provider: 'CCID',
       uid: 'johndoe',
       info: {
         email: 'johndoe@ualberta.ca',

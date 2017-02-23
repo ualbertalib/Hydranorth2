@@ -21,6 +21,8 @@
 
 en:
   hello: 'Hello world'
+  login:
+    omniauth_error: 'There is an error authorizing your account.'
   devise:
     sessions:
       new:
