@@ -23,8 +23,7 @@ gem 'blacklight-hierarchy'
 
 gem 'devise'
 gem 'omniauth'
-# gem 'devise-guests', '~> 0.3'
-gem 'omniauth-shibboleth'
+gem 'omniauth-saml'
 gem 'rolify'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
