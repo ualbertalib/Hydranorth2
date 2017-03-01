@@ -18,11 +18,12 @@ GIT
       stomp
       xml-simple
 
-GIT
-  remote: https://github.com/ualbertalib/CollectionNorth.git
-  revision: f5565a622fe0a31986e1d737a217a8ab0b9502f1
+PATH
+  remote: ../collection_north
   specs:
     collection_north (0.0.1)
+      curation_concerns (~> 1.6.1)
+      jquery-ui-rails (~> 5.0.5)
       rails (>= 4.2.0)
 
 GEM

@@ -10,11 +10,19 @@ Rails.application.routes.draw do
   end
 
   devise_for :users
+
+
+
+  mount CollectionNorth::Engine, at: '/'
+  # sufia expects these routes (eg new_collection_path) to live in the host app
+  resources :collections, to: 'collection_north/collections'
+  resources :communities, to: 'collection_north/communities'
+
   mount CurationConcerns::Engine, at: '/'
   resources :welcome, only: 'index'
   root 'sufia/homepage#index'
-  curation_concerns_collections
   curation_concerns_basic_routes
+#  curation_concerns_collections
   curation_concerns_embargo_management
   concern :exportable, Blacklight::Routes::Exportable.new
 
@@ -29,6 +37,7 @@ Rails.application.routes.draw do
       delete 'clear'
     end
   end
+
 
   # This must be the very last route in the file because it has a catch-all route for 404 errors.
   # This behavior seems to show up only in production mode.
