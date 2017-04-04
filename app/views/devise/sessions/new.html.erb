@@ -1,0 +1,14 @@
+<% provide :page_title, construct_page_title(t('.title')) %>
+
+<h1><%= t '.header' %></h1>
+<p><%= t '.description_html' %></p>
+<a href="/auth/CCID" class="btn btn-primary">
+   <%= t('.login_button_text') %>
+</a>
+
+<%- if Rails.env.development? %>
+  <%# TODO: Temporary login form for local development until IST shibboleth issues gets resolved %>
+  <a href="/auth/developer" class='btn btn-primary'>
+    Sign in with Developer Account
+  </a>
+<% end %>

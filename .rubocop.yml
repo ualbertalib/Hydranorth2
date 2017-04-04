@@ -24,6 +24,9 @@ AllCops:
 Metrics/AbcSize:
   Enabled: false
 
+Metrics/BlockLength:
+  Enabled: false
+
 Metrics/ClassLength:
   Max: 500 # default 100
 
@@ -76,7 +79,7 @@ Style/WordArray:
   Enabled: false
 
 RSpec/ExampleLength:
-  Max: 15
+  Enabled: false
 
 RSpec/MultipleExpectations:
-  Max: 5
+  Enabled: false
