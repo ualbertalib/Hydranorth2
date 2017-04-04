@@ -68,6 +68,9 @@ Style/IndentationConsistency:
 Style/RegexpLiteral:
   Enabled: false
 
+Style/ParenthesesAroundCondition
+  Enabled: false
+
 # Use %w or %W for arrays of words.
 Style/WordArray:
   Enabled: false
