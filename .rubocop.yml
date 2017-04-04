@@ -71,7 +71,7 @@ Style/IndentationConsistency:
 Style/RegexpLiteral:
   Enabled: false
 
-Style/ParenthesesAroundCondition
+Style/ParenthesesAroundCondition:
   Enabled: false
 
 # Use %w or %W for arrays of words.
