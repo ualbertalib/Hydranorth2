@@ -1,6 +1,6 @@
 class Users::OmniauthCallbacksController < ApplicationController
   # TODO: Remove this once we figure out IST, this is only required for the omniauth developer provider
-  skip_before_action :verify_authenticity_token, only: :complete unless Rails.env.production?
+  skip_before_action :verify_authenticity_token, only: :complete unless (Rails.env.production? && !ENV['ENABLE_TMP_LOGINS'])
 
   def complete
     auth_hash = request.env['omniauth.auth']
