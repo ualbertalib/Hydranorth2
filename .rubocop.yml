@@ -80,3 +80,7 @@ RSpec/ExampleLength:
 
 RSpec/MultipleExpectations:
   Enabled: false
+
+# as discussed in issue#144
+Style/ParenthesesAroundCondition:
+  Enabled: false
