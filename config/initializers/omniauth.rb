@@ -12,7 +12,8 @@ Rails.application.config.middleware.use OmniAuth::Builder do
            },
            name: 'CCID'
 
-  provider :developer unless (Rails.env.production? && !ENV['ENABLE_TMP_LOGINS'])
+  provider :developer unless (Rails.env.production? ||
+                              ENV['ENABLE_TMP_LOGINS'].present?)
 
   # By default in development mode, omniauth raises an exception when authentication fails
   # comment this line if you want to see the stacktrace from the actual provider when in `development`
