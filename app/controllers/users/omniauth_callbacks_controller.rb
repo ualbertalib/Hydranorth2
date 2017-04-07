@@ -18,7 +18,7 @@ class Users::OmniauthCallbacksController < ApplicationController
       if user.nil?
         user = User.create(email: auth_hash.info.email,
                            password: Devise.friendly_token[0, 20],
-                           display_name: "#{auth_hash.info.name} #{auth_hash.info.last_name}")
+                           display_name: auth_hash.info.display_name)
       end
 
       user.identities.create(provider: params[:provider], uid: auth_hash.uid)
