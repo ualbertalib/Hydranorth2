@@ -92,3 +92,15 @@ This is not ideal and hopefully a temporary solution. But currently in developme
 Some helpful links for more information:
 * http://www.jeesty.com/shibboleth
 * https://docs.gitlab.com/ce/integration/shibboleth.html
+
+## Building docker image
+
+   You can build docker image for Hydranorth2 following precedure below.
+   There is a copy of ualibraries/hydranorth2 image that can be pulled
+   from [dockerhub](https://hub.docker.com/r/ualibraries/hydranorth2/)
+
+   ```shell
+   docker build -t ualibraries/hydranorth2 .
+   ```
+
+
