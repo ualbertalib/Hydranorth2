@@ -16,7 +16,8 @@ ADD . /app
 RUN echo "gem 'tinymce-rails-imageupload', github: 'PerfectlyNormal/tinymce-rails-imageupload'" >> /app/Gemfile
 RUN cd /app && bundle install
 RUN cd /app && rake assets:precompile
-ADD bin/start_hn2.sh /usr/local/bin
+
+CMD rake db:migrate && rails server -b 0.0.0.0
 
 EXPOSE 3000
 
