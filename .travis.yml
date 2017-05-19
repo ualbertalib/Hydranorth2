@@ -22,6 +22,9 @@ notifications:
 services:
   - redis-server
 
+before_install:
+  - gem update --system
+
 before_script:
   - bin/setup
 

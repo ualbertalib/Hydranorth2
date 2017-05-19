@@ -24,6 +24,9 @@ AllCops:
 Metrics/AbcSize:
   Enabled: false
 
+Metrics/BlockLength:
+  Enabled: false
+
 Metrics/ClassLength:
   Max: 500 # default 100
 
@@ -68,12 +71,16 @@ Style/IndentationConsistency:
 Style/RegexpLiteral:
   Enabled: false
 
+Style/ParenthesesAroundCondition:
+  Enabled: false
+
 # Use %w or %W for arrays of words.
 Style/WordArray:
   Enabled: false
 
 RSpec/ExampleLength:
-  Max: 15
+  Enabled: false
 
 RSpec/MultipleExpectations:
-  Max: 5
+  Enabled: false
+

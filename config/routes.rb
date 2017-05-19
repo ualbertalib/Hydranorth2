@@ -9,13 +9,14 @@ Rails.application.routes.draw do
     concerns :searchable
   end
 
-  devise_for :users
+  devise_for :users, skip: [:registrations, :passwords, :omniauth_callbacks]
 
 
 
   mount CollectionNorth::Engine, at: '/'
+  match '/auth/:provider/callback', to: 'users/omniauth_callbacks#complete', via: [:get, :post]
   # sufia expects these routes (eg new_collection_path) to live in the host app
-  resources :collections, to: 'collection_north/collections'
+  match '/auth/failure', to: 'users/omniauth_callbacks#failure', via: [:get, :post]
   resources :communities, to: 'collection_north/communities'
 
   mount CurationConcerns::Engine, at: '/'
