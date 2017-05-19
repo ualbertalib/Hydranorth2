@@ -6,7 +6,7 @@
    <%= t('.login_button_text') %>
 </a>
 
-<%- if Rails.env.development? %>
+<%- if Rails.env.development? || ENV['ENABLE_TMP_LOGINS'] %>
   <%# TODO: Temporary login form for local development until IST shibboleth issues gets resolved %>
   <a href="/auth/developer" class='btn btn-primary'>
     Sign in with Developer Account
