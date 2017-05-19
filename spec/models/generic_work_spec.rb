@@ -3,7 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe GenericWork do
-  it 'has tests' do
-    skip 'Add your tests here'
+  let(:work) { FactoryGirl.build(:work) }
+
+  it 'should have our indexer' do
+    expect(work.indexer).to eq WorkIndexer
+  end
+
+  it 'indexes sortable title' do
+    expect(work.to_solr).to have_key('sortable_title_ssi')
   end
 end
