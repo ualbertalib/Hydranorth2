@@ -47,3 +47,16 @@ You can then run rubocop with:
 * Once this is complete, login via SAML should be working successfully
 
 (TODO: Provide an alternative to IST? Like TestShib?)
+
+## Building docker image
+
+   You can build docker image for Hydranorth2 following precedure below.
+   There is a copy of ualibraries/hydranorth2 image that can be pulled
+   from [dockerhub](https://hub.docker.com/r/ualibraries/hydranorth2/)
+
+   ```shell
+   docker build -t ualibraries/hydranorth2 .
+   ```
+
+
+
