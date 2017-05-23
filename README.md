@@ -39,59 +39,14 @@ You can then run rubocop with:
   $ rake hydranorth:ci
   ```
 
-## Configuring Shibboleth
-This is not ideal and hopefully a temporary solution. But currently in development you must host your own shibboleth service provider (SP) and connect with http://testshib.org Identiy Provider (IdP) (or use another IdP of your choice) to use authentication in this application. To set this up you can do the following:
-  * Install apache on your machine (for Ubuntu: `$ sudo apt-get install apache2`)
-  * Install and configured a Shibboleth Service Provider (SP) daemon (shibd)
-    * For Ubuntu: http://federation.belnet.be/?q=node/24
-    * For RPM:
-    https://wiki.shibboleth.net/confluence/display/SHIB2/NativeSPLinuxRPMInstall
-    * For Mac OS X:
-    https://wiki.shibboleth.net/confluence/display/SHIB2/NativeSPMacInstall
-    * For configuration of shibd you mainly need to edit shibboleth2.xml to point to your IP address and testshib.org
-  * Install mod_shib for apache (for ubuntu: `$ sudo apt-get install libapache2-mod-shib2`)
-  * Install Passenger and mod passenger for apache (For Ubuntu: `$ sudo gem install passenger` and `$ sudo apt-get install libapache2-mod-passenger` and configure it accordingly. (You can use `$ passenger-install-apache2-module` to configure on Ubuntu)
-  * Change apache config to get it all working together. My config file looks something like the following:
-```
-<VirtualHost *:80>
-  ServerName 129.128.46.172
-  DocumentRoot /directory/of/Code/Hydranorth2/public
-  RailsEnv development
+## Configuring SAML
 
-	<Location />
-    Allow from all
-    Options -MultiViews
-    Require all granted
-   </Location>
+* Update `secrets.yml`/`omniauth.rb` config files for the SAML implementation (you may need to generate a certificate/key for certain environments)
+* Give IST's Identity Provider (uat-login or login) the metadata for our service provider
+  * Quick way to view this metadata is to the start the Rails server and navigate to `localhost:3000/auth/saml/metadata` (feel free to edit this metadata accordingly for example adding Organization and ContactPerson metadata)
+* Once this is complete, login via SAML should be working successfully
 
-	<Location /Shibboleth.sso>
-		SetHandler shib-handler
-    PassengerEnabled off
-	</Location>
-
-	<Location /auth/CCID/callback>
-		AuthType shibboleth
-		ShibRequestSetting requireSession 1
-		ShibUseHeaders On
-		Require valid-user
-	</Location>
-
-	Alias /shibboleth-sp /usr/share/shibboleth
-	<Location /shibboleth-sp>
-		Satisfy any
-	</Location>
-
-  # ... etc #
-</VirtualHost>
-```
-  * visit '/Shibboleth.sso/Metadata' to download and review the metadata, rename to a filename of your preference
-  * upload the SP metadata to http://testshib.org/register.html or your Identiy Provider (IdP)
-  * Run Solr and Fedora servers
-  * Go to your IP Address that apache is listening to, and hydranorth2 should be up and running on passenger. You should now be able to login by using shibboleth!
-
-Some helpful links for more information:
-* http://www.jeesty.com/shibboleth
-* https://docs.gitlab.com/ce/integration/shibboleth.html
+(TODO: Provide an alternative to IST? Like TestShib?)
 
 ## Building docker image
 
@@ -102,5 +57,6 @@ Some helpful links for more information:
    ```shell
    docker build -t ualibraries/hydranorth2 .
    ```
+
 
 

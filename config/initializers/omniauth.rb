@@ -1,16 +1,21 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :shibboleth,
-           # TODO: mappings will need to change when authenticating against IST's SAML
-           uid_field: lambda { |request_param|
-             request_param.call('uid') || request_param.call('eppn').gsub(/@.*/, '')
-           },
-           info_fields: {
-             email: ->(request_param) { request_param.call('mail') || request_param.call('eppn') },
-             name: 'givenName',
-             last_name: 'sn',
-             # TODO: grab more details to populate our DB fields like: address, department, title, etc.
-           },
-           name: 'CCID'
+  provider :saml,
+           assertion_consumer_service_url: Rails.application.secrets.saml_assertion_consumer_service_url,
+           idp_cert: Rails.application.secrets.saml_idp_cert,
+           certificate: Rails.application.secrets.saml_certificate,
+           private_key: Rails.application.secrets.saml_private_key,
+           idp_sso_target_url: Rails.application.secrets.saml_idp_sso_target_url,
+           issuer: Rails.application.secrets.saml_issuer,
+           name_identifier_format: 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient',
+           attribute_statements: {
+             # TODO: How to get values as human readable instead of URNs?
+             # Shibboleth had an attribute-map.xml for mapping this...must be a way or up to IdP?
+             email: ['urn:oid:0.9.2342.19200300.100.1.3'], # mail
+             # Nothing is using these currently
+             # first_name: ['urn:oid:2.5.4.42'], # givenName
+             # last_name: ['urn:oid:2.5.4.4'],  #sn
+             display_name: ['urn:oid:2.16.840.1.113730.3.1.241'] # displayName
+           }
 
   provider :developer if (Rails.env.development? || ENV['ENABLE_TMP_LOGINS'].present?)
 
