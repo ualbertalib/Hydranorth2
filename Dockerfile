@@ -1,4 +1,4 @@
-FROM ualibraries/ruby_plus2.3.3
+FROM ualibraries/rubyhydra
 # https://github.com/ualbertalib/DIDockerImages/blob/master/RubyPlus/Dockerfile
 RUN apt-get update -qq && \
     apt-get install -y libpq-dev \
